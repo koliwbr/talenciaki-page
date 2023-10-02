@@ -1,5 +1,5 @@
 let talenciaki = 0;
-const talenciaki_cel = 700;
+const talenciaki_cel = parseInt(location.search.replace("?","").split("&")[1])||700;
 fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
     method: 'POST',
     body: new URLSearchParams({
@@ -18,13 +18,14 @@ fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
             talenciaki += e['data']['totalBalance']
         })
     }
-    Promise.all(location.search.replace("?","").split(',').map(id => {
+    Promise.all(location.search.replace("?","").split("&")[0].split(',').map(id => {
         return get_talencika(parseInt(id))
     })).then(() => {
         console.log(talenciaki)
-        let talenciaki_prcnt = Math.round((talenciaki / talenciaki_cel)*100)
+
+        let talenciaki_prcnt = Math.round((talenciaki / talenciaki_cel)*1000)/10
         document.getElementById('textlvl').innerText = talenciaki + "/" + talenciaki_cel + " (" + talenciaki_prcnt + "%)"
-        document.getElementById('lvl').style.width = talenciaki_prcnt +'%'
+        document.getElementById('lvl').style.width = ((talenciaki>talenciaki_cel)?'100%':talenciaki_prcnt +'%')  
         document.getElementById('textlvl').removeAttribute('style')
     })
 
