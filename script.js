@@ -25,6 +25,7 @@ fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
         let talenciaki_prcnt = Math.round((talenciaki / talenciaki_cel)*100)
         document.getElementById('textlvl').innerText = talenciaki + "/" + talenciaki_cel + " (" + talenciaki_prcnt + "%)"
         document.getElementById('lvl').style.width = talenciaki_prcnt +'%'
+        document.getElementById('textlvl').removeAttribute('style')
     })
 
 })
