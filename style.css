@@ -1,0 +1,52 @@
+body{
+		background-color: #005aa0;
+		--progress-color: #f00;
+		font-family: 'Nunito', sans-serif;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+	}
+#plvl{
+		display: block;
+		border-radius: 100000px;
+		width: 90%;
+		margin-right: auto;
+		margin-left: auto;
+		height: 10%;
+		background-color: #DDDDDD;
+		background-image: linear-gradient(180deg, #AAAAAA, #EEEEEE);
+		user-select: none;
+		text-align: left;
+	}
+#lvl{
+		border-radius: 100000px;
+		display: block;
+		margin-left: 0px;
+		background-color: red;
+		background-image: linear-gradient(0deg, blue, yellow);
+		height: 100%;
+		width: 0%;
+		user-select: none;
+	}
+#textlvl{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		font-size: 5vh;
+		user-select: none;
+	}
+
+#cd{
+		width: 100%;
+	}
+	
+.text{
+		font-size: 15vh;
+		user-select: none;
+	}
