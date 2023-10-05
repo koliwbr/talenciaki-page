@@ -21,7 +21,7 @@ const refresh = () => fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
             talenciaki += e['data']['totalBalance']
         })
     }
-    Promise.all(location.search.replace("?","").split("&")[0].split(',').map(id => {
+    Promise.all(location.search.replace("?id=","").replace("?","").split("&")[0].split(',').map(id => {
         return get_talencika(parseInt(id))
     })).then(() => {
         console.log(talenciaki)
