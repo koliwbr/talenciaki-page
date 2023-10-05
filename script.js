@@ -1,5 +1,5 @@
 let talenciaki = 0;
-const talenciaki_cel = parseInt(location.search.replace("?","").split("&")[1])||2001;
+const talenciaki_cel = parseInt(location.search.replace("?","").split("&")[1])||2000;
 
 
 const refresh = () => fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
