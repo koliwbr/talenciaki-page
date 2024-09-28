@@ -2,23 +2,13 @@ let talenciaki = 0;
 const talenciaki_cel = parseInt(location.search.replace("?","").split("&")[1])||2000;
 
 
-const refresh = () => fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
-    method: 'POST',
-    body: new URLSearchParams({
-        'encryptData': '3DD4FB074BBBA7D3F38D7CF5CAF1A399E29E4D47E849E869D56537698629BDFB',
-        'productStoreId': 'LIDL_Prod2023'
-    })
-}).then(e => e.json()).then(e => {
-    let api_key = e['apiKey'];
+const refresh = () => {
     talenciaki = 0;
 
     function get_talencika(ImprezaID) {
-        return fetch('https://szkoly.lidl.pl/rest/s1/api/tcc/getClubInfo?partyId=' + ImprezaID + '&locale=pl', {
-            headers: {
-                'api_key': api_key
-            }
+        return fetch('https://corsproxy.io/?https%3A%2F%2Flidlpl.communitytcc.com%2Fpublic-api%2Fcommunity%2F' + ImprezaID, {
         }).then(e => e.json()).then(e => {
-            talenciaki += e['data']['totalBalance']
+            talenciaki += e['pointsBalance']['availableBalance']
         })
     }
     Promise.all(location.search.replace("?id=","").replace("?","").split("&")[0].split(',').map(id => {
@@ -32,7 +22,7 @@ const refresh = () => fetch('https://szkoly.lidl.pl/rest/s1/api/secureLogin', {
         document.getElementById('textlvl').removeAttribute('style')
     })
 
-})
+}
 refresh()
 setInterval(refresh,1000*60*2) // dwie minuty
 
